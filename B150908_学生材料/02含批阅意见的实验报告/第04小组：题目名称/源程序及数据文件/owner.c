@@ -69,24 +69,24 @@ void calcuTotal(Owner own[],int n)         /*计算所有车主的总停车时间*/
 }
 
 void cacluTimetable(double m[1][3],Owner Own[],int n);              /*求停车的最长、最短、平均时间*/
-                       /*其中形式参数二维数组m的第一维代表停车次数，第二维代表最长、最短、平均时间*/
+                       /*其中形式参数二维数组m的第一维代表某位车主，第二维代表最长、最短、平均时间*/
 {
 	int i,j;
-	for (i=0;i<10;i++)                 /*求停车的最长时间*/		
+	for (i=0;i<n;i++)                 /*求停车的最长时间*/		
 	{ 
 		m[i][0]=own[0].time[i];     
 		for (j=1;j<n;j++)
 			if (m[i][0]<own[j].time[i])
 				m[i][0]=own[j].time[i];
 	}
-	for (i=0;i<10;i++)                  /*求停车的最短时间*/
+	for (i=0;i<n;i++)                  /*求停车的最短时间*/
 	{ 
 		m[i][1]=own[0].time[i];      
 		for (j=1;j<n;j++)
 			if (m[i][1]>own[j].time[i])
 				m[i][1]=own[j].time[i];
 	}
-	for (i=0;i<10;i++)                 /*求停车的平均时间*/
+	for (i=0;i<n;i++)                 /*求停车的平均时间*/
 	{ 
 		m[i][2]=own[0].time[i];     
 		for (j=1;j<n;j++)
