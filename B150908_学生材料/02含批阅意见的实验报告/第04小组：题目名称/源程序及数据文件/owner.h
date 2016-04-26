@@ -10,16 +10,13 @@ struct Owner                /*车主记录的数据域*/
 	char sex[10];
 	int time[10];
 	int total;
-	int fee;
 }
 typedef struct Owner Owner;            
 #define sizeOwn sineof(Owner)          /*一个车主记录所需要的内存空间大小*/
 int readOwn(Owner Own[],int n);        /*读入车主记录值，车牌号为0或读满规定条数记录时停止*/
 void printOwn(Owner *Own,int n);        /*输出所有车主记录的值*/
 void calcuTotal(Owner Own[],int n);         /*计算所有车主的总分*/
-void cacluTimetable(double m[1][3],Owner Own[],int n);                /*求车主的最长、最短、平均停车时间，m数组第一维*/
-                                                                       /*表示哪门课，第二维表示最长、最短、平均停车时间*/
-void fee(Owner Own[],int n);
+void cacluTimetable(double m[1][3],Owner Own[],int n);                /*求车主的最长、最短、平均停车时间*/
 int searchOwn(Owner Own[],int n,Owner s,int condition,int f[]);        /*根据条件找数组中与s相等的各元素*/
                                                 /*下标置于f数组中，设f数组是因为查找结果可能不止一条记录*/
 int insertOwn(Owner Own[],int n,Owner s);           /*向数组中插入一个元素按车牌号有序*/
