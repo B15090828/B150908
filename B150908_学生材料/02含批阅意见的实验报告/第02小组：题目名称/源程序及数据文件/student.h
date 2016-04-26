@@ -7,11 +7,12 @@ struct car
 {
 	long number;													//车牌号
 	char name[20];												   //车主姓名
-    char chexing[10]                                          //车型
-    char color                                               //颜色
+    char chexing[10];                                          //车型
+    char color[4];                                               //颜色
 	int grade;													      //扣分
 	int money;													     //罚款
-	Char weigui[10]；                                   		//违规情况
+	Char weigui[10];                                   		//违规情况
+		int rank;                                          //排列
 } ;
 
 typedef struct car car;
@@ -21,7 +22,7 @@ void printche(car  *che , int n);   /*输出所有车辆记录的值*/
 
 int equal(car s1,car s2,int condition);  /*根据condition条件判断两个car类型数据相等否*/
 int larger(car s1,car s2,int condition);  /*根据condition比较car类型数据大小*/
-void reverse(car stu[],int n);             /*车辆记录数组元素逆置*/
+void reverse(car che[],int n);             /*车辆记录数组元素逆置*/
 
 void calcuTotal(car che[],int n);           /*计算所有车辆的总扣分*/
 void calcuRank(car che[],int n);           /*根据扣分多少进行排列，允许有并列名次*/
