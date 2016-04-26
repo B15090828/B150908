@@ -1,6 +1,7 @@
 /*li12_1.c*/
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h> 
 #include"file.h"
 #include"student.h"
 
@@ -196,9 +197,20 @@ int runMain(Student stu[],int n,int choice)    /*Ö÷¿ØÄ£¿é£¬¶ÔÓ¦ÓÚÒ»¼¶²Ëµ¥ÆäÏÂ¸÷¹
 }
 
 int main( )
-{
-		Student stu[NUM];                /*¶¨ÒåÊµ²ÎÒ»Î¬Êı×é´æ´¢Ñ§Éú¼ÇÂ¼*/
-      int choice,n;
+{ 
+     char pwd[10] = {'p','a','s','s','w','o','r','d','\0','\0'}; 
+     char pwd_input[10]; 
+     for(int i = 0; i < 10; i++) 
+     pwd_input[i] = '\0'; 
+     printf("ÇëÊäÈëÃÜÂë:\n"); 
+     scanf("%s",pwd_input); 
+     if(0 == strcmp(pwd, pwd_input)) 
+     printf("ÃÜÂëÕıÈ·!µÇÂ¼³É¹¦£¡\n"); 
+     else 
+     printf("ÃÜÂë´íÎó!³ÌĞòÍË³ö£¡\n"); 
+   return 1;  
+	Student stu[NUM];                /*¶¨ÒåÊµ²ÎÒ»Î¬Êı×é´æ´¢Ñ§Éú¼ÇÂ¼*/
+     int choice,n;
 	 n=readFile(stu);                  /*Ê×ÏÈ¶ÁÈ¡ÎÄ¼ş£¬¼ÇÂ¼ÌõÊı·µ»Ø¸³Öµ¸øn*/
 	 if (!n)                          /*Èç¹ûÔ­À´µÄÎÄ¼şÎª¿Õ*/
 	     {

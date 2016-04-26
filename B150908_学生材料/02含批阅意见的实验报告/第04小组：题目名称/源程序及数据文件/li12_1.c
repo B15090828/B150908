@@ -2,59 +2,59 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"file.h"
-#include"student.h"
+#include"owner.h"
 
-void printHead( )      /*打印学生信息的表头*/
+void printHead( )      /*打印车主信息的表头*/
 {
-printf("%8s%10s%8s%6s%6s%8s%6s%6s\n","学号","姓名","性别","数学","英语","计算机","总分","名次");
+printf("%8s%10s%8s%6s%10s%6s\n","车牌号","姓名","性别","单次时间","总时间","平均费用");
 }
 
 void menu( )         /*顶层菜单函数*/
 {
 		printf("******** 1. 显示基本信息 ********\n");
 		printf("******** 2. 基本信息管理 ********\n");
-		printf("******** 3. 学生成绩管理 ********\n");
-		printf("******** 4. 考试成绩统计 ********\n");
-     printf("******** 5. 根据条件查询 ********\n");
+		printf("******** 3. 车主信息管理 ********\n");
+		printf("******** 4. 停车信息统计 ********\n");
+		printf("******** 5. 根据条件查询 ********\n");
 		printf("******** 0. 退出         ********\n");
 }
 
 void menuBase( )     /*2、基本信息管理菜单函数*/
 {
-		printf("%%%%%%%% 1. 插入学生记录 %%%%%%%%\n");
-		printf("%%%%%%%% 2. 删除学生记录 %%%%%%%%\n");
-		printf("%%%%%%%% 3. 修改学生记录 %%%%%%%%\n");
+		printf("%%%%%%%% 1. 添加车主信息 %%%%%%%%\n");
+		printf("%%%%%%%% 2. 删除车主信息 %%%%%%%%\n");
+		printf("%%%%%%%% 3. 修改车主信息 %%%%%%%%\n");
 		printf("%%%%%%%% 0. 返回上层菜单 %%%%%%%%\n");
 }
 
-void menuScore( )     /*3、学生成绩管理菜单函数*/
+void menuScore( )     /*3、车主信息管理菜单函数*/
 {
-		printf("@@@@@@@@ 1. 计算学生总分 @@@@@@@@\n");
-		printf("@@@@@@@@ 2. 根据总分排名 @@@@@@@@\n");
+		printf("@@@@@@@@ 1. 计算停车总时间 @@@@@@@@\n");
+		printf("@@@@@@@@ 2. 计算平均停车费用 @@@@@@@@\n");
 		printf("@@@@@@@@ 0. 返回上层菜单 @@@@@@@@\n");
 }
  
-void menuCount( )    /*4、考试成绩统计菜单函数*/
+void menuCount( )    /*4、停车信息统计菜单函数*/
 {
-		printf("&&&&&&&& 1. 求课程最高分 &&&&&&&&\n");
-		printf("&&&&&&&& 2. 求课程最低分 &&&&&&&&\n");
-		printf("&&&&&&&& 3. 求课程平均分 &&&&&&&&\n");
+		printf("&&&&&&&& 1. 计算停车最长时间 &&&&&&&&\n");
+		printf("&&&&&&&& 2. 计算停车最短时间 &&&&&&&&\n");
+		printf("&&&&&&&& 3. 计算停车平均平均分 &&&&&&&&\n");
 		printf("&&&&&&&& 0. 返回上层菜单 &&&&&&&&\n");
 }
 
 void menuSearch()    /*5、根据条件查询菜单函数*/
 {
-		printf("######## 1. 按学号查询   ########\n");
+		printf("######## 1. 按车牌号查询   ########\n");
 		printf("######## 2. 按姓名查询   ########\n");
-		printf("######## 3. 按名次查询   ########\n");
+		/*后面的根据名次查询删除*/
 		printf("######## 0. 返回上层菜单 ########\n");
 }
 
-int baseManage(Student stu[],int n)    	     /*该函数完成基本信息管理*/
-/*按学号进行插入删除修改，学号不能重复*/
+int baseManage(Owner own[],int n)    	     /*该函数完成基本信息管理*/
+/*按车牌号进行插入删除修改，车牌号不能重复*/
 {  
 		int choice,t,find[NUM];
-     Student s;
+     Owner s;
 do
 	    {   
 menuBase( );                  /*显示对应的二级菜单*/
@@ -62,23 +62,23 @@ printf("choose one operation you want to do:\n");
 		     scanf("%d",&choice);	          /*读入选项*/
 		     switch(choice)
 		     {
-			   case 1:	 readStu(&s,1);       /*读入一条待插入的学生记录*/
-					 n=insertStu(stu,n,s);   /*调用函数插入学生记录*/
+			   case 1:	 readOwn(&s,1);       /*读入一条待插入的车主记录*/
+					 n=insertOwn(own,n,s);   /*调用函数插入车主记录*/
 					 break;
 			   case 2:  printf("Input the number deleted\n");
-					 scanf("%ld",&s.num);  /*读入一个待删除的学生学号*/
-					 n=deleteStu(stu,n,s);   /*调用函数删除指定学号的学生记录*/
+					 scanf("%ld",&s.num);  /*读入一个待删除的车主车牌号*/
+					 n=deleteOwn(own,n,s);   /*调用函数删除指定车牌号的车主记录*/
 					 break;
 			   case 3:  printf("Input the number modified\n");
-					 scanf("%ld",&s.num);  /*读入一个待修改的学生学号*/
-				      t=searchStu(stu,n,s,1,find) ; /*调用函数查找指定学号的学生记录*/
-				      if (t)                 /*如果该学号的记录存在*/
+					 scanf("%ld",&s.num);  /*读入一个待修改的车主车牌号*/
+				      t=searchOwn(own,n,s,1,find) ; /*调用函数查找指定车牌号的车主记录*/
+				      if (t)                 /*如果该车牌号的记录存在*/
 					 {
-						  readStu(&s,1);   /*读入一条完整的学生记录信息*/
-					      stu[find[0]]=s;    /*将刚读入的记录赋值给需要修改的数组记录*/ 					 
+						  readOwn(&s,1);   /*读入一条完整的车主记录信息*/
+					      own[find[0]]=s;    /*将刚读入的记录赋值给需要修改的数组记录*/ 					 
 					  }					 
-					 else                 /*如果该学号的记录不存在*/ 
- printf("this student is not in,can not be modified.\n"); /*输出提示信息*/
+					 else                 /*如果该车牌号的记录不存在*/ 
+ printf("this owner is not in,can not be modified.\n"); /*输出提示信息*/
 					 break;
 			    case 0: break;
 		    }
@@ -86,19 +86,19 @@ printf("choose one operation you want to do:\n");
 return n;                             /*返回当前操作结束后的实际记录条数*/
 }
 
-void scoreManage(Student stu[],int n)          /*该函数完成学生成绩管理功能*/
+void informationManage(Owner own[],int n)          /*该函数完成车主信息管理功能*/
 {  
 	int choice;
 	do
 	{
-		menuScore( );                        /*显示对应的二级菜单*/
+		menuInformatiom( );                        /*显示对应的二级菜单*/
 		printf("choose one operation you want to do:\n");
 		scanf("%d",&choice);	                 /*读入二级选项*/
 		switch(choice)
 		{
-			case 1:   calcuTotal(stu,n);         /*求所有学生的总分*/
+			case 1:   calcuTotal(own,n);         /*求所有车主的总停车时间*/
 					  break;
-			case 2:   calcuRank(stu,n);         /*根据所有学生的总分排名次*/
+			case 2:   calcuTimetable(own,n);         /*根据所有车主平均停车费用*/
 				      break;		
 			case 0:   break;
 		}
