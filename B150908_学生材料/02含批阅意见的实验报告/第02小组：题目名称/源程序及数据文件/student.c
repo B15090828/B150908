@@ -1,5 +1,5 @@
 /*②student.c文件的完整内容*/
-#include "cheliang.h"
+#include "student.h"
 #include <stdio.h>
 
 int readStu(Student  *stu , int n)          /*读入学生记录值，学号为0或读满规定条数记录时停止*/
