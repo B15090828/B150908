@@ -1,4 +1,4 @@
-/*②student.c文件的完整内容*/
+/*②owner.c文件的完整内容*/
 #include"owner.h"
 #include<stdio.h>
 
