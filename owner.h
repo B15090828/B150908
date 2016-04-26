@@ -1,4 +1,4 @@
-/* ①student.h文件的完整内容 */
+/* ①Owner.h文件的完整内容 */
 #ifndef _OWNER              /*条件编译，防止重复包含的错误*/
 #define _OWNER
 #include <string.h>
