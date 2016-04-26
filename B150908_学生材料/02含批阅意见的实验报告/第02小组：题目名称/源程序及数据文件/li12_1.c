@@ -2,11 +2,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"file.h"
-#include"cheliang.h"
+#include"car.h"
 
 void printHead( )      /*打印车辆信息的表头*/
 {
-printf("%8s%10s%8s%6s%6s%8s%6s%6s\n","车主","车牌号","车型号","车颜色","违规记录","缴费状态","违规时间","扣分情况");
+printf("%8s%10s%8s%6s%6s%8s%6s%6d\n","车主","车牌号","车型号","车颜色","违规记录","缴费状态","违规时间","扣分情况");
 }
 
 void menu( )         /*顶层菜单函数*/
@@ -15,7 +15,7 @@ void menu( )         /*顶层菜单函数*/
 		printf("******** 2. 基本信息管理 ********\n");
 		printf("******** 3. 车辆信息管理 ********\n");
 		printf("******** 4. 违规扣分统计 ********\n");
-     printf("******** 5. 根据条件查询 ********\n");
+        printf("******** 5. 根据条件查询 ********\n");
 		printf("******** 0. 退出         ********\n");
 }
 
@@ -27,13 +27,7 @@ void menuBase( )     /*2、基本信息管理菜单函数*/
 		printf("%%%%%%%% 0. 返回上层菜单 %%%%%%%%\n");
 }
 
-void menuScore( )     /*3、车辆违规管理菜单函数*/
-{
-		printf("@@@@@@@@ 1. 计算扣除总分 @@@@@@@@\n");
-		printf("@@@@@@@@ 2. 根据扣分排名 @@@@@@@@\n");
-		printf("@@@@@@@@ 0. 返回上层菜单 @@@@@@@@\n");
-}
- 
+
 void menuCount( )    /*4、违规扣分统计菜单函数*/
 {
 		printf("&&&&&&&& 1. 求扣除最高分 &&&&&&&&\n");
@@ -47,6 +41,8 @@ void menuSearch()    /*5、根据条件查询菜单函数*/
 		printf("######## 1. 按车牌号查询   ########\n");
 		printf("######## 2. 按车主查询   ########\n");
 		printf("######## 3. 按扣分查询   ########\n");
+		printf("######## 4. 车的型号查询   ########\n");
+		printf("######## 5. 车的颜色查询  ########\n");
 		printf("######## 0. 返回上层菜单 ########\n");
 }
 
@@ -114,28 +110,7 @@ int i;
 	   printf("\n");
 }
 
-void countManage(cl che[],int n)               /*该函数完成违规扣分统计功能*/
-{
-		int choice;
-		double mark[3][3];
-		do
-		{
-			menuCount( );                        /*显示对应的二级菜单*/
-			calcuMark(mark,che,n);                 /*调用此函数求扣分的最高、最低、平均值*/
-			printf("choose one operation you want to do:\n");
-			scanf("%d",&choice);
-			switch(choice)
-			{
-				case 1:   printMarkCourse("扣除的最高分分别是:\n",mark,0);  /*输出最高分*/
-				      break;
-				case 2:   printMarkCourse("扣除的最低分分别是:\n",mark,1);  /*输出最低分*/
-				      break;
-				case 3:   printMarkCourse("扣除的平均分分别是:\n",mark,2);  /*输出平均分*/
-				      break;
-				case 0:   break;
-			}
-		}while (choice);
-}
+
 
 void searchManage(cl che[],int n)               /*该函数完成根据条件查询功能*/
 {
